@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Pédagogique</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card">
+        <div class="card-header">
+            <h3>Liste des salles</h3>
+            <div class="float-end">
+                <a th:href="@{/rp/form-salle}" class="btn btn-outline-info">Nouvelle</a>
+            </div>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Numero</th>
+                    <th>Nombre de place</th>
+                    <th>Classe</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cl:${listSalles}">
+                    <td th:text="${cl.nom}"></td>
+                    <td th:text="${cl.numero}"></td>
+                    <td th:text="${cl.nbrePlace}"></td>
+                    <td th:text="${cl.classe}"></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success">XXXX</button>
+                        <button type="button" class="btn btn-outline-danger">XXXX</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

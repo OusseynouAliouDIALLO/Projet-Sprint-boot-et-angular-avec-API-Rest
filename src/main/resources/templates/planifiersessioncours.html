@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Pédagogique</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <form class="d-flex my-2 w-50" method="get" th:action="@{/rp/liste-coursplanifier}">
+                <input class="form-control me-2" name="keyword" th:value="${keyword}"  type="search" placeholder="filtrer par nbre heure" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+            <div class="float-end">
+                <a th:href="@{/rp/form-planifiersessioncours}" class="btn btn-outline-info">Nouvelle planification</a>
+            </div>
+            <h3>Liste des cours planifier</h3>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Heure de début</th>
+                    <th>Heure de fin</th>
+                    <th>Nombre d'heure</th>
+                    <th>Date</th>
+                    <th>Etat</th>
+                    <th>Classe</th>
+                    <th>Cours</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cl:${listPlanifiers}">
+                    <td th:text="${cl.heureDebut}"></td>
+                    <td th:text="${cl.heureFin}"></td>
+                    <td th:text="${cl.nbreHeure}"></td>
+                    <td th:text="${cl.date}"></td>
+                    <td th:text="${cl.etat}"></td>
+                   <!-- <td>
+                        <form class="offset-1 my-2" th:action="@{/rp/etat-planifiersessioncours}" method="get">
+                            <div class="row">
+                                <div class="col">
+                                    <select name="etat" class="form-select" aria-label="Default select example">
+                                        <option value="1">Terminer</option>
+                                        <option value="2">Encours</option>
+                                        <option value="3">Annuler</option>
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </td>-->
+                    <td th:text="${cl.classe}"></td>
+                    <td th:text="${cl.cours}"></td>
+                    <td>
+                        <a sec:authorize="hasAuthority('RP')" th:href="@{/rp/form-valide-sessioncours(id=${cl.id})}" type="button" class="btn btn-outline-success">Changer Etat</a>
+                        <a type="button" class="btn btn-outline-danger" th:href="@{/rp/annuler-coursplanifier(id=${cl.id})}">Supprimer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

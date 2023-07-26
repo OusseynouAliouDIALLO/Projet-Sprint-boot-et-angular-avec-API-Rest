@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html
+        lang="en" xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="template"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <h5>Liste des Classes</h5>
+            <div class="container">
+                <div class="float-end offset-2" sec:authorize="hasAuthority('RP')">
+                    <a th:href="@{/rp/form-professeur}" class="btn btn-outline-secondary">Nouveau professeur</a>
+                </div>
+                <div class="float-end offset-2" sec:authorize="hasAuthority('RP')">
+                    <a th:href="@{/rp/form-etudiant}" class="btn btn-outline-primary">Inscrire un étudiant</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="float-end" sec:authorize="hasAuthority('RP')">
+                 <a th:href="@{/rp/form-classe}" class="btn btn-outline-info">Nouvelle classe</a>
+            </div>
+            <br>
+            <form class="d-flex my-2 w-50" method="get" th:action="@{/rp/liste-classe}">
+                <input class="form-control me-2" name="keyword" th:value="${keyword}" type="search" placeholder="entrer le libelle" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Filière</th>
+                <th>Niveau</th>
+                <th>Libelle</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cl:${listClasses}">
+                <td th:text="${cl.filiere}"></td>
+                <td th:text="${cl.niveau}"></td>
+                <td th:text="${cl.libelle}"></td>
+                <td>
+                    <button type="button" class="btn btn-outline-success">XXXX</button>
+                    <button type="button" class="btn btn-outline-danger">XXXX</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

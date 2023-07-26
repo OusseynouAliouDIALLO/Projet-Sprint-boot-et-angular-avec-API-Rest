@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html
+        lang="en" xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="template"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <h5>Liste des cours</h5>
+            <div class="container">
+                <div class="float-end offset-2">
+                    <a th:href="@{/rp/form-cours}" class="btn btn-outline-warning">Nouveau cours</a>
+                </div>
+                <div class="float-end offset-2" sec:authorize="hasAuthority('RP')">
+                    <a th:href="@{/rp/liste-absence}" class="btn btn-outline-warning">Liste Absences</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+
+            <form class="d-flex my-2 w-50" method="get" th:action="@{/rp/liste-cours}">
+                <input class="form-control me-2" name="keyword" th:value="${keyword}" type="search" placeholder="entrer le module" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Nombre d'heure</th>
+                    <th>Semestre</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cl:${listCours}">
+                    <td th:text="${cl.libelle}"></td>
+                    <td th:text="${cl.nbreHeure}"></td>
+                    <td th:text="${cl.semestre}"></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success">XXXX</button>
+                        <button type="button" class="btn btn-outline-danger">XXXX</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

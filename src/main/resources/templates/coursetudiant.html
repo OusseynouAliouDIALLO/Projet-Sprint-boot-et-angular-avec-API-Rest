@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Pédagogique</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card">
+        <div class="card-header">
+            <h3>Liste de mes cours</h3>
+            <button type="button" class="btn btn-info fs-8 offset-2">
+                Total absence <span class="badge  text-white fs-4 font-monospace">2</span>
+            </button>
+        </div>
+            <form class="d-flex my-2 w-50">
+                <input class="form-control me-2" type="search" placeholder="entrer le module" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre d'heure</th>
+                    <th>Semestre</th>
+                    <th>Etudiant</th>
+                    <th>Professeur</th>
+                    <th>Module</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cl:${listCours}">
+                    <td th:text="${cl.nbreHeure}"></td>
+                    <td th:text="${cl.semestre}"></td>
+                    <td th:text="${cl.etudiant}"></td>
+                    <td th:text="${cl.professeur}"></td>
+                    <td th:text="${cl.libelle}"></td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-outline-success">XXXX</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+</body>
+</html>

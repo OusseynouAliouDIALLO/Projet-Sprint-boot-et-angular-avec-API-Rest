@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+  <script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+    <nav class="navbar navbar-dark bg-dark" sec:authorize="isAuthenticated()" style="background-color: #0013FF;">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" th:href="@{/accueil}">Gestion Pédagogique</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">XXXX</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-classe}">Classe</a>
+          </li>
+          <br>
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-salle}">Salle</a>
+          </li>
+          <br>
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-cours}">Cours</a>
+          </li>
+          <br>
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-etudiant}">Etudiant</a>
+          </li>
+          <br>
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-professeur}">Professeur</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAuthority('RP')">
+            <a class="nav-link active text-white" aria-current="page" th:href="@{/rp/liste-coursplanifier}">Session Cours</a>
+          </li>
+        </ul>
+          <ul class="navbar-nav  mb-2 mb-lg-0">
+            <li class="nav-item float-end" >
+              <a class="nav-link text-white text-capitalize" aria-current="page"   >
+                <span th:remove="tag"  sec:authentication="name"></span>
+              </a>
+            </li>
+          </ul>
+          <!--<li class="nav-item" sec:authorize="hasRole('RP')">-->
+          <form class="d-flex" method="post" th:action="@{/logout}">
+            <button class="btn btn-primary text-white " type="submit">Déconnexion</button>
+          </form>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<section  layout:fragment="contentForView">
+
+</section>
+  </div>
+</div>
+</body>
+</html>

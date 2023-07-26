@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un cours</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card mt-2">
+        <div class="card-header" sec:authorize="hasAuthority('RP')">
+            <h3>Ajouter cours</h3>
+            <a th:href="@{/rp/liste-absence}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-absence}">
+                <div class="col-md-6">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" name="date" th:value="${absence.date}" class="form-control" id="date" aria-describedby="emailHelp">
+                </div>
+                <div class="col-md-6">
+                    <label for="etat" class="form-label">Etat</label>
+                    <input type="text" name="etat" th:value="${absence.etat}" class="form-control" id="etat" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="motif" class="form-label">Motif</label>
+                    <input type="text" name="motif" th:value="${absence.motif}" class="form-control" id="motif" aria-describedby="emailHelp">
+                </div>
+
+                <div>
+                    <button type="submit" class="float-end btn btn-primary">Enregister</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

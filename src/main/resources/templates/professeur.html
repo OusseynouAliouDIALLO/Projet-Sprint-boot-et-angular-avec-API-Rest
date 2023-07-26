@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Pédagogique</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3>Liste des professeur</h3>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nom et Prénom</th>
+                        <th>Spécialité</th>
+                        <th>Grade</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cl:${listProfesseurs}">
+                        <td th:text="${cl.nomComplet}"></td>
+                        <td th:text="${cl.specialite}"></td>
+                        <td th:text="${cl.grade}"></td>
+                        <td>
+                            <a type="button" class="btn btn-outline-success" th:href="@{/professeur/liste-cours-professeur(id=${cl.id})}">Mes cours</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

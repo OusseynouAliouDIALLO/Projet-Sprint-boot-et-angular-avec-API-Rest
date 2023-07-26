@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajout de nouvelles classes</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card mt-2">
+        <div class="card-header"  sec:authorize="hasAuthority('RP')">
+            <h3>Ajouter classe</h3>
+            <a th:href="@{/rp/liste-classe}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+        </div>
+        <div class="card-body">
+        <form class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-classe}">
+
+            <div th:if="${mode}"  th:class="${mode=='error' ? 'alert alert-danger': 'alert alert-success'}"
+                 th:text="${message}"
+                 role="alert">
+            </div>
+
+            <div class="col-md-6">
+              <label for="filiere" class="form-label">Filière</label>
+              <input type="text" name="filiere" th:value="${classe.filiere}" class="form-control" id="filiere" aria-describedby="emailHelp">
+            </div>
+            <div class="col-md-6">
+              <label for="niveau" class="form-label">Niveau</label>
+              <input type="text" name="niveau" th:value="${classe.niveau}" class="form-control" id="niveau" aria-describedby="emailHelp">
+            </div>
+            <div class="col-md-6">
+              <label for="libelle" class="form-label">Libelle</label>
+              <input type="text" name="libelle" th:value="${classe.libelle}" class="form-control" id="libelle" aria-describedby="emailHelp">
+            </div>
+
+            <div>
+                <button type="submit" class="float-end btn btn-primary">Enregister</button>
+            </div>
+
+        </form>
+
+
+  </div>
+</div>
+</div>
+</body>
+</html>

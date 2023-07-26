@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un etudiant</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+  <div class="card mt-2">
+    <div class="card-header" sec:authorize="hasAuthority('RP')">
+      <h3>Inscrire un étudiant </h3>
+      <a th:href="@{/rp/liste-etudiant}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+    </div>
+    <div class="card-body">
+      <form class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-etudiant}">
+        <div class="col-md-6">
+          <label for="nomComplet" class="form-label">Nom et Prénom</label>
+          <input type="text" name="nomComplet" th:value="${etudiant.nomComplet}" class="form-control" id="nomComplet" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-6">
+          <label for="telephone" class="form-label">Telephone</label>
+          <input type="text" name="telephone" th:value="${etudiant.telephone}" class="form-control" id="telephone" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-6">
+          <label for="username" class="form-label">Nom d'identifiant</label>
+          <input type="text" name="username" th:value="${etudiant.username}" class="form-control" id="username" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-6">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" name="password" th:value="${etudiant.password}" class="form-control" id="password" aria-describedby="emailHelp">
+        </div>
+
+        <div>
+          <button type="submit" class="float-end btn btn-primary">Enregister</button>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

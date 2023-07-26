@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un cours</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card mt-2">
+        <div class="card-header" sec:authorize="hasAuthority('RP')">
+            <h3>Ajouter cours</h3>
+            <a th:href="@{/rp/liste-cours}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-cours}">
+                <div class="col-md-6">
+                    <label for="nbreHeure" class="form-label">Nombre d'heure</label>
+                    <input type="text" name="nbreHeure" th:value="${cours.nbreHeure}" class="form-control" id="nbreHeure" aria-describedby="emailHelp">
+                </div>
+                <div class="col-md-6">
+                    <label for="semestre" class="form-label">Semestre</label>
+                    <input type="text" name="semestre" th:value="${cours.semestre}" class="form-control" id="semestre" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="libelle" class="form-label">Module</label>
+                    <input type="text" name="libelle" th:value="${cours.libelle}" class="form-control" id="libelle" aria-describedby="emailHelp">
+                </div>
+
+                <div>
+                    <button type="submit" class="float-end btn btn-primary">Enregister</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un cours</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+  <div class="card mt-2">
+    <div class="card-header" sec:authorize="hasAuthority('RP')">
+      <h3>Ajouter une session de cours</h3>
+        <a th:href="@{/rp/liste-coursplanifier}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+    </div>
+    <div class="card-body">
+      <form th:object="${planifierClasseCours}" class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-planifiersessioncours}">
+          <div class="col-md-6">
+            <label for="heureDebut" class="form-label">Heure de début</label>
+            <input type="text" name="heureDebut" th:value="${planifiersessioncours.heureDebut}" class="form-control" id="heureDebut" aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-6">
+            <label for="heureFin" class="form-label">Heure de fin</label>
+            <input type="text" name="heureFin" th:value="${planifiersessioncours.heureFin}" class="form-control" id="heureFin" aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-6">
+            <label for="nbreHeure" class="form-label">Nombre d'heure</label>
+            <input type="text" name="nbreHeure" th:value="${planifiersessioncours.nbreHeure}" class="form-control" id="nbreHeure" aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-6">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" name="date" th:value="${planifiersessioncours.date}" class="form-control" id="date" aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-6">
+              <label for="etat" class="form-label">Etat</label>
+              <input type="etat" name="etat" th:value="${planifiersessioncours.etat}" class="form-control" id="etat" aria-describedby="emailHelp">
+          </div>
+
+          <!--<div class="col-md-6" >
+              <label class="form-label">Etat</label>
+              <select name="etat" class="form-select" aria-label="Default select example">
+                  <option value="1">Terminer</option>
+                  <option value="2">Encours</option>
+                  <option value="3">Annuler</option>
+              </select>
+          </div>-->
+
+          <div class="col-md-6">
+            <label for="cours" class="form-label">Cours</label>
+            <input type="text" name="cours" th:value="${planifiersessioncours.cours}" class="form-control" id="cours" aria-describedby="emailHelp">
+          </div>
+
+          <div class="col-md-6">
+              <label for="classe" class="form-label">Classe</label>
+              <input type="text" name="classe" th:value="${planifiersessioncours.classe}" class="form-control" id="classe" aria-describedby="emailHelp">
+          </div>
+          <div class="col-md-6" th:object="${listClasse}">
+              <label for="classe" class="form-label">Classe</label>
+              <select th:object="${listClasse}" class="form-select" aria-label="Default select example">
+                  <option th:field="*{idClasse}" th:each="classe:${classes}" name="classe" th:value="${classe.id}" th:text="${classe.libelle}"></option>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+              </select>
+          </div>
+
+        <div>
+          <button type="submit" class="float-end btn btn-primary">Enregister</button>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

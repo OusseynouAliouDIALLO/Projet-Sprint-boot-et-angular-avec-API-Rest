@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+<head>
+  <meta charset="UTF-8">
+
+  <title>Title</title>
+</head>
+<body>
+<div class="container" layout:fragment="contentForView">
+
+  <!--<ul class="navbar-nav  mb-2 mb-lg-0" text-align="center" >
+    <li class="nav-item float-end" >
+      <a class="nav-link text-dark text-capitalize" aria-current="page"   >
+        <span> <h4>Bienvenue sur votre page d'accueil</h4> </span>
+      </a>
+    </li>
+  </ul>-->
+
+  <img src="asset/img1.jpeg" class="rounded float-start" alt="...">
+  <img src="asset/img2.jpeg" class="rounded float-end" alt="...">
+
+  <div class="card" style="width: 100; height: 100">
+    <img src="asset/img.png" class="card-img-top" alt="logo-ism">
+  </div>
+  <br>
+
+
+  <div class="card-body row g-3 col-md-8 offset-2">
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-primary text-white">Nos objectifs pour cette année</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-secondary text-white">Notre vision à long terme</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-success text-white">Pourquoi nous choisir</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-danger text-white">Quel avenir après nos diplômes</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-warning text-dark">Comment nous rejoindre</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 mb-2 bg-info text-dark">Autres</div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

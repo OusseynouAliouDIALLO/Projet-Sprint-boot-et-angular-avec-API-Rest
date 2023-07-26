@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une salle</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+    <div class="card mt-2">
+        <div class="card-header" sec:authorize="hasAuthority('RP')">
+            <h3>Ajouter professeur</h3>
+            <a th:href="@{/rp/liste-salle}" class="btn btn-outline-primary float-end offset-2">Retour</a>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 col-md-8 offset-2" method="post" th:action="@{/rp/save-salle}">
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" name="nom" th:value="${salle.nom}" class="form-control" id="nom" aria-describedby="emailHelp">
+                </div>
+                <div class="col-md-6">
+                    <label for="numero" class="form-label">Numéro</label>
+                    <input type="text" name="numero" th:value="${salle.numero}" class="form-control" id="numero" aria-describedby="emailHelp">
+                </div>
+                <div class="col-md-6">
+                    <label for="nbrePlace" class="form-label">Nombre place</label>
+                    <input type="text" name="nbrePlace" th:value="${salle.nbrePlace}" class="form-control" id="nbrePlace" aria-describedby="emailHelp">
+                </div>
+                <!--<div class="col-md-6">
+                    <select name="classe" class="form-select" aria-label="Default select example">
+                        <option selected>Selectionner une classe</option>
+                        <option th:each="classe:${classes}" th:value="${classe.id}" th:text="${classe.libelle}"></option>
+                    </select>
+                </div>-->
+                <div>
+                    <button type="submit" class="float-end btn btn-primary">Enregister</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

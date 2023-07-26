@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+        lang="en" xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="template"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container " layout:fragment="contentForView">
+
+    <div class="card mt-2">
+        <div class="card-header">
+            <h5>Liste des absences</h5>
+            <div class="float-end" sec:authorize="hasAuthority('RP')">
+                <a th:href="@{/rp/form-absence}" class="btn btn-outline-info">Prendre absence</a>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Etat</th>
+                    <th>Motif</th>
+                    <th>Etudiant</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cl:${listAbsence}">
+                    <td th:text="${cl.date}"></td>
+                    <td th:text="${cl.etat}"></td>
+                    <td th:text="${cl.motif}"></td>
+                    <td th:text="${cl.etudiant}"></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success">XXXX</button>
+                        <button type="button" class="btn btn-outline-danger">XXXX</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
